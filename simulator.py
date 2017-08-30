@@ -15,6 +15,7 @@ display_height = 600
 lottery_width = 250
 lottery_height = 200
 lottery_price = 20
+
 # buttons
 okay_button = pygame.image.load('image/okay_button.png')
 start_button = pygame.image.load('image/start_button.png')
@@ -30,8 +31,6 @@ next_button = pygame.image.load('image/next_button.png')
 lottery_button = pygame.image.load('image/lottery.png')
 lottery_popUp = pygame.image.load('image/lottery_popUp.png')
 
-
-
 # shrimp image
 crs_shrimp = pygame.image.load('image/crystalRedShrimp.png')
 cbs_shrimp = pygame.image.load('image/crystalBlackShrimp.png')
@@ -42,36 +41,29 @@ tiger_shrimp = pygame.image.load('image/tiger.png')
 shadowPanda_shrimp = pygame.image.load('image/shadowPanda.png')
 oebt_shrimp = pygame.image.load('image/oebt.png')
 redPinto_shrimp = pygame.image.load('image/redPinto.png')
-
 hidden_shrimp = pygame.image.load('image/hiddenShrimp.png')
 
-
-
+#nitialize game display
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Shrimp Simulator')
-
+font = pygame.font.SysFont(None, 25)
 clock = pygame.time.Clock()
 
 FPS = 30
 maxPopulation = 150
 
-pregnancyWaitPeriod = 2
+pregnancyWaitPeriod = 3
 crs_price = 5
 cbs_price = 4
 rw_price = 15
 bkk_price = 11
 
-font = pygame.font.SysFont(None, 25)
-
-
-
+# Reading text file
 numLines = sum(1 for line in open('trivia.txt'))
 f=open('trivia.txt')
 lines=f.readlines()
 
-
-
-
+# super class
 class Shrimp:
     __Shrimp = []
     __isMale = False
@@ -213,11 +205,9 @@ def try_buy(totalMoney, price):
 
 def try_sell(list):
     temp_list = list
-
     list_length = len(temp_list)
     if (list_length <= 0):
         failList = []
-
         return failList
 
     # if a shrimp is berried(pregnant), it will not be sold unless there is nothing else to sell
@@ -231,8 +221,6 @@ def try_sell(list):
     pregnantMaxAge = 0
 
     for x in temp_list:
-        # print ("AGE")
-        # print(x.getAge())
         if x.isPregnant() == True:
             pregnantCounter += 1
             if x.getAge() > pregnantMaxAge:
@@ -247,7 +235,6 @@ def try_sell(list):
                 femaleMaxAge = x.getAge()
 
     usage = 0  # 1 --> sell Pregant   2 -->sell male  3-->sell female
-
     # if only pregnant one is available to sell
     if maleCounter == 0 and femaleCounter == 0 and pregnantCounter > 0:
         usage = 1
@@ -255,18 +242,15 @@ def try_sell(list):
         usage = 2
     else:
         usage = 3
-
     for x in temp_list:
         if usage == 1:
             if x.isPregnant() == True and x.getAge() == pregnantMaxAge:
                 temp_list.remove(x)
                 return temp_list
-
         if usage == 2:
             if x.isMale() == True and x.getAge() == maleMaxAge:
                 temp_list.remove(x)
                 return temp_list
-
         if usage == 3:
             if x.isMale() != True and x.getAge() == femaleMaxAge and x.isPregnant() == False:
                 temp_list.remove(x)
@@ -296,15 +280,15 @@ def startScreen():
         pygame.display.update()
 
 def aboutScreen():
+
     aboutScreen = True
 
     while aboutScreen is True:
         gameDisplay.fill(white)
         message_to_screen("About", black, display_width / 2, display_height / 10, 25)
-
         gameDisplay.blit(about_description, (200, 100))
-
         ok_button_display = gameDisplay.blit(okay_button, (400, 460))
+
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 intro = False
@@ -318,10 +302,8 @@ def aboutScreen():
 
 def updateShrimp(crs, cbs, bkk, rw, bb):
     tempPopulationSize = 0
-
     maleList = []
     maleListLength = 0
-
     allShrimp = []
     allShrimp.append(crs)
     allShrimp.append(cbs)
@@ -332,7 +314,6 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
     for x in range(0, len(allShrimp)):
         for y in allShrimp[x]:
             tempPopulationSize += 1
-
     # initial loop to:
     # 1. increase age, decrease fitness
     # 2. death from fitness
@@ -340,7 +321,6 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
     # 4. if male, should put it into mating pool
     for x in range(0, len(allShrimp)):
         for y in allShrimp[x]:
-
             # print("getting baby"+ str(y.getBaby()))
             y.increaseAge()
             y.decreaseFitness()
@@ -353,7 +333,6 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
                     if y.getPregnancyPeriod() > 3:
                         for z in y.getBaby():
                             babyClassName = z.__class__.__name__
-                            ##########################################
                             if tempPopulationSize < maxPopulation:
                                 if babyClassName == "CrystalRedShrimp":
                                     allShrimp[0].append(z)
@@ -367,16 +346,14 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
                                 elif babyClassName == "RedWineShrimp":
                                     allShrimp[3].append(z)
                                     tempPopulationSize += 1
-
                         y.clearBaby()
                         y.setPregnant(False)
                         y.setPregnancyPeriod(0)
 
             elif y.isMale() == True:
                 maleList.append(y)
-                #  print (maleList)
+
     # search for female, then do the mating
-    # shrimp is diploid
     '''
     genetic assumptions:
        - diploid model
@@ -385,9 +362,8 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
        - sexual reproduction: receives 1 copy of gene from a single parents at random 
     '''
     # filtered list of allShrimp of deaths, births
-
     maleListLength = len(maleList);
-    luckyMaleNumer = 0
+    luckyMaleNumber = 0
     if maleListLength != 0:
         luckyMaleNumber = random.randint(0, maleListLength - 1)
 
@@ -483,7 +459,6 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
                         y.setPregnant(True)
                         y.addBaby(newShrimp)
 
-
 def updateTrivia(trivia):
     # read random lines from trivia.txt.
     randomNum = random.randint(0, numLines)
@@ -504,14 +479,10 @@ def gameLoop():
     shadowPandaNum = 0
     redPinto_unlocked = False
     redPintoNum = 0
-
     oebt_unlocked = False
     oebtNum=0
 
     trivia = "New Shrimp Trivia Every Month"
-
-
-
 
     # crs1 = CrystalRedShrimp(True, 4)
     crs2 = CrystalRedShrimp(False, 5)
@@ -521,14 +492,8 @@ def gameLoop():
 
     crs_list.append(crs2)
 
-    # print(len(crs_list))
-
-    money = 100;
+    money = 125;
     month = 0;
-
-
-
-
     gameExit = False
     gameOver = False
 
@@ -548,7 +513,6 @@ def gameLoop():
                     updateShrimp(crs_list, cbs_list, bkk_list, rw_list, bolt_list)
                     trivia = updateTrivia(trivia)
 
-                # not sure if switch can be used here for collision detection
                 if crs_buy_display.collidepoint(pygame.mouse.get_pos()):
                     if try_buy(money, crs_price):
                         crs_list.append(CrystalRedShrimp(sexDeterminator(), 2))
@@ -556,15 +520,10 @@ def gameLoop():
                 if crs_sell_display.collidepoint(pygame.mouse.get_pos()):
                     crsLen = len(crs_list)
                     temp_list = try_sell(crs_list)
-                    # print(len(temp_list))
-                    if (len(temp_list) != 0):
-                        # crs_list = temp_list
+                    if len(temp_list) != 0:
                         money += crs_price
-                        # print(crs_list)
-                    if (crsLen == 1 and len(temp_list) == 0):  # for selling last ne
-                        # crs_list = temp_list
+                    if crsLen == 1 and len(temp_list) == 0:  # for selling last ne
                         money += crs_price
-
                 if cbs_buy_display.collidepoint(pygame.mouse.get_pos()):
                     if try_buy(money, cbs_price):
                         cbs_list.append(CrystalBlackShrimp(sexDeterminator(), 2))
@@ -572,15 +531,10 @@ def gameLoop():
                 if cbs_sell_display.collidepoint(pygame.mouse.get_pos()):
                     cbsLen = len(cbs_list)
                     temp_list = try_sell(cbs_list)
-                    #  print(len(temp_list))
                     if (len(temp_list) != 0):
-                        # crs_list = temp_list
                         money += cbs_price
-                        # print(cbs_list)
                     if (cbsLen == 1 and len(temp_list) == 0):  # for selling last ne
-                        # crs_list = temp_list
                         money += cbs_price
-
                 if bkk_buy_display.collidepoint(pygame.mouse.get_pos()):
                     if try_buy(money, bkk_price):
                         money -= bkk_price
@@ -588,15 +542,10 @@ def gameLoop():
                 if bkk_sell_display.collidepoint(pygame.mouse.get_pos()):
                     bkkLen = len(bkk_list)
                     temp_list = try_sell(bkk_list)
-                    # print(len(temp_list))
-                    if (len(temp_list) != 0):
-                        # crs_list = temp_list
+                    if len(temp_list) != 0:
                         money += bkk_price
-                        #  print(bkk_list)
-                    if (bkkLen == 1 and len(temp_list) == 0):  # for selling last ne
-                        # crs_list = temp_list
+                    if bkkLen == 1 and len(temp_list) == 0:  # for selling last ne
                         money += bkk_price
-
                 if rw_buy_display.collidepoint(pygame.mouse.get_pos()):
                     if try_buy(money, rw_price):
                         money -= rw_price
@@ -604,17 +553,12 @@ def gameLoop():
                 if rw_sell_display.collidepoint(pygame.mouse.get_pos()):
                     rwLen = len(rw_list)
                     temp_list = try_sell(rw_list)
-                    #   print(len(temp_list))
-                    if (len(temp_list) != 0):
-                        # crs_list = temp_list
+                    if len(temp_list) != 0:
                         money += rw_price
-                    # print(crs_list)
-                    if (rwLen == 1 and len(temp_list) == 0):  # for selling last ne
-                        # crs_list = temp_list
+                    if rwLen == 1 and len(temp_list) == 0:  # for selling last ne
                         money += rw_price
-
                 if lottery_display.collidepoint(pygame.mouse.get_pos()):
-                     if (money>=lottery_price):
+                     if money>=lottery_price:
                         money -= lottery_price
                         enableLotteryScreen = True
 
@@ -673,7 +617,6 @@ def gameLoop():
                                 winner = tiger_string
                                 creditAmount = tiger_credit
 
-
                         while enableLotteryScreen:
                              for event in pygame.event.get():
                                 if event.type == pygame.QUIT:
@@ -703,7 +646,6 @@ def gameLoop():
                                         if winner == redPinto_string:
                                             redPinto_unlocked = True
                                             redPintoNum += 1
-
                                         enableLotteryScreen= False
 
                              gameDisplay.blit(lottery_popUp, (lottery_width, lottery_height))
@@ -731,17 +673,10 @@ def gameLoop():
                                  whichImageToLoad = redPinto_shrimp
 
                              shrimpPic = gameDisplay.blit(whichImageToLoad, (lottery_width+200, lottery_height+100))
-
                              acceptBlit = gameDisplay.blit(accept_button, (lottery_width+150, lottery_height+210))
                              creditBlit = gameDisplay.blit(credit_button, (lottery_width + 300, lottery_height+ 210))
-
                              pygame.event.pump()
                              pygame.display.update()
-
-
-
-
-
 
         gameDisplay.fill(white)
 
@@ -798,8 +733,6 @@ def gameLoop():
         message_to_screen("Did you know...?", black, 900, 50, 21)
         message_to_screen(trivia, blue, 900, 80, 20)
 
-
-
         # inventory
         message_to_screen("Inventory", black, 300, 300, 33)
         gameDisplay.blit(crs_shrimp, (50, 300))
@@ -841,7 +774,6 @@ def gameLoop():
             message_to_screen("Red Pinto Shrimp", black, 550, 470, 15)
             message_to_screen("Numbers:" + str(redPintoNum), black, 550, 490, 15)
 
-
         if oebt_unlocked ==False:
             gameDisplay.blit(hidden_shrimp, (400, 500))
         else:
@@ -850,12 +782,9 @@ def gameLoop():
             message_to_screen("Numbers:" + str(oebtNum), black, 550, 540, 15)
 
         pygame.display.update()
-
         clock.tick(FPS)
-
     pygame.quit()
     quit()
-
 
 startScreen()
 gameLoop()
