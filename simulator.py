@@ -7,6 +7,7 @@ pygame.init()
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
+blue = (0, 0, 205)
 
 display_width = 1100
 display_height = 600
@@ -61,6 +62,15 @@ rw_price = 15
 bkk_price = 11
 
 font = pygame.font.SysFont(None, 25)
+
+
+
+numLines = sum(1 for line in open('trivia.txt'))
+f=open('trivia.txt')
+lines=f.readlines()
+
+
+
 
 class Shrimp:
     __Shrimp = []
@@ -474,8 +484,10 @@ def updateShrimp(crs, cbs, bkk, rw, bb):
                         y.addBaby(newShrimp)
 
 
-
-
+def updateTrivia(trivia):
+    # read random lines from trivia.txt.
+    randomNum = random.randint(0, numLines)
+    return lines[randomNum-1]
 
 def gameLoop():
     crs_list = []
@@ -496,6 +508,8 @@ def gameLoop():
     oebt_unlocked = False
     oebtNum=0
 
+    trivia = "New Shrimp Trivia Every Month"
+
 
 
 
@@ -511,6 +525,9 @@ def gameLoop():
 
     money = 100;
     month = 0;
+
+
+
 
     gameExit = False
     gameOver = False
@@ -529,6 +546,7 @@ def gameLoop():
                 if next_button_display.collidepoint(pygame.mouse.get_pos()):
                     month += 1
                     updateShrimp(crs_list, cbs_list, bkk_list, rw_list, bolt_list)
+                    trivia = updateTrivia(trivia)
 
                 # not sure if switch can be used here for collision detection
                 if crs_buy_display.collidepoint(pygame.mouse.get_pos()):
@@ -775,6 +793,12 @@ def gameLoop():
         #lottery button
         lottery_display = gameDisplay.blit(lottery_button, (500, 120))
         message_to_screen("Lottery(can unlock rare) $20", black, 600, 250, 15)
+
+        # Trivia Button
+        message_to_screen("Did you know...?", black, 900, 50, 21)
+        message_to_screen(trivia, blue, 900, 80, 20)
+
+
 
         # inventory
         message_to_screen("Inventory", black, 300, 300, 33)
