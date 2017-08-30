@@ -1,7 +1,6 @@
 # Shrimp Simulator
 
-A python program with * [pyGame](https://www.pygame.org/news) to simulate fresh water shrimp breeding and selling.
-  
+A python program with [pyGame](https://www.pygame.org/news) to simulate fresh water shrimp breeding and selling.
 
 - Work in progress-
 - need to tweak parameters
@@ -21,6 +20,5 @@ inventory, which you can sell off.
 -each shrimp has 2 genes and each gene is in pairs (diploid): Crystal and Color gene.
 -based on mating, a shrimp can have different genetic variations and if different shrimps are mixed and mated(complete random
 among all shrimps), then their offspring could be different type compared to their parents.
- check out* [dihybrid] (http://www.biology.arizona.edu/mendelian_genetics/problem_sets/dihybrid_cross/03t.html) for more info.
-
+ check out [dihybrid cross](http://www.biology.arizona.edu/mendelian_genetics/problem_sets/dihybrid_cross/03t.html) for more info.
 
