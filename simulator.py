@@ -15,34 +15,34 @@ lottery_width = 250
 lottery_height = 200
 lottery_price = 20
 # buttons
-okay_button = pygame.image.load('okay_button.png')
-start_button = pygame.image.load('start_button.png')
-about_button = pygame.image.load('about_button.png')
-about_description = pygame.image.load('about_description.png')
-title_image = pygame.image.load('title.png')
-accept_button = pygame.image.load('accept.png')
-credit_button = pygame.image.load('credit.png')
+okay_button = pygame.image.load('image/okay_button.png')
+start_button = pygame.image.load('image/start_button.png')
+about_button = pygame.image.load('image/about_button.png')
+about_description = pygame.image.load('image/about_description.png')
+title_image = pygame.image.load('image/title.png')
+accept_button = pygame.image.load('image/accept.png')
+credit_button = pygame.image.load('image/credit.png')
 
-buy_button = pygame.image.load('buy_button.png')
-sell_button = pygame.image.load('sell_button.png')
-next_button = pygame.image.load('next_button.png')
-lottery_button = pygame.image.load('lottery.png')
-lottery_popUp = pygame.image.load('lottery_popUp.png')
+buy_button = pygame.image.load('image/buy_button.png')
+sell_button = pygame.image.load('image/sell_button.png')
+next_button = pygame.image.load('image/next_button.png')
+lottery_button = pygame.image.load('image/lottery.png')
+lottery_popUp = pygame.image.load('image/lottery_popUp.png')
 
 
 
 # shrimp image
-crs_shrimp = pygame.image.load('crystalRedShrimp.png')
-cbs_shrimp = pygame.image.load('crystalBlackShrimp.png')
-bkk_shrimp = pygame.image.load('blackKingKong.png')
-rw_shrimp = pygame.image.load('redWine.png')
-blueBolt_shrimp = pygame.image.load('blueBolt.png')
-tiger_shrimp = pygame.image.load('tiger.png')
-shadowPanda_shrimp = pygame.image.load('shadowPanda.png')
-oebt_shrimp = pygame.image.load('oebt.png')
-redPinto_shrimp = pygame.image.load('redPinto.png')
+crs_shrimp = pygame.image.load('image/crystalRedShrimp.png')
+cbs_shrimp = pygame.image.load('image/crystalBlackShrimp.png')
+bkk_shrimp = pygame.image.load('image/blackKingKong.png')
+rw_shrimp = pygame.image.load('image/redWine.png')
+blueBolt_shrimp = pygame.image.load('image/blueBolt.png')
+tiger_shrimp = pygame.image.load('image/tiger.png')
+shadowPanda_shrimp = pygame.image.load('image/shadowPanda.png')
+oebt_shrimp = pygame.image.load('image/oebt.png')
+redPinto_shrimp = pygame.image.load('image/redPinto.png')
 
-hidden_shrimp = pygame.image.load('hiddenShrimp.png')
+hidden_shrimp = pygame.image.load('image/hiddenShrimp.png')
 
 
 
