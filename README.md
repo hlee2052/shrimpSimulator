@@ -3,7 +3,7 @@
 - A python program with [pyGame](https://www.pygame.org/news) to simulate fresh water shrimp breeding and selling.
 - As a shrimp breeder, I have been fascinated by these little critters and thus the motivation for this program. 
 
-![image not working](https://github.com/hlee2052/ShrimpSimulator1/blob/master/ScreenShot/image1.png)
+![image not working](https://github.com/hlee2052/ShrimpSimulator1/blob/master/image1.png)
 
 ![image not working](https://github.com/hlee2052/shrimpSimulator/image2.png)
 
