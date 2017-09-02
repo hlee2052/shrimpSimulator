@@ -4,10 +4,10 @@
 - As a shrimp breeder, I have been fascinated by these little critters and thus the motivation for this program. 
 
 ![image not working](https://github.com/hlee2052/ShrimpSimulator/blob/master/image1.png)
+![image not working](https://github.com/hlee2052/ShrimpSimulator/blob/master/image2.png)
+![image not working](https://github.com/hlee2052/ShrimpSimulator/blob/master/image3.png)
 
-![image not working](https://github.com/hlee2052/shrimpSimulator/image2.png)
 
-![image not working](https://github.com/hlee2052/shrimpSimulator/image3.png)
 
 
 #### Work in progress-
