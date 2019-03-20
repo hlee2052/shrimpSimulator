@@ -1,7 +1,7 @@
 # Shrimp Simulator
 
-- A python program with [pyGame](https://www.pygame.org/news) to simulate fresh water shrimp breeding and selling.
-- As a shrimp breeder, I have been fascinated by these little critters and thus the motivation for this program. 
+- A python program built with [pyGame](https://www.pygame.org/news) to simulate fresh water shrimp breeding and selling.
+- As a shrimp breeder, I have been fascinated by these little critters, which motivate me to create this game. 
 
 ![image not working](https://github.com/hlee2052/ShrimpSimulator/blob/master/image1.png)
 ![image not working](https://github.com/hlee2052/ShrimpSimulator/blob/master/image2.png)
@@ -12,16 +12,14 @@
 
 #### Work in progress-
 - need to tweak parameters
-- need to implement more event handling and refactoring 
-- minor bug fixes in shrimp crossing.
+- need to implement more event handling features 
+- minor bug fixes in shrimp crossing
 
 ## How to use:
 
-- A player is given credit to buy four types of shrimps. User can freely buy and sell their four shrimps.
-- Shrimp will have finite fitness and as month progresses they are likely to pass away. 
-- When shrimp is purchased, it can be either male or females. As time is progressed, if there are both males and females,
-shrimp will be pregant (berried) and after certain time has passed, they will give birth to babies which will increase your 
-inventory, which you can sell off.
+- A player is given credits to buy four types of shrimps. A player can freely buy and sell their shrimps.
+- Shrimps have finite fitness and as month progresses they are likely to pass away. 
+- Shrimps are either male or female. As time progresses, if there are both male and female shrimps in a player's pool, female shrimps will get pregant and after certain time, they will give birth to babies which will increase shrimp numbers in your inventory, which you can sell off.
 - player can purchase lottery to unlock unknown shrimp collections. Some shrimps will not show up on lottery unless you have unlocked
 a certain type already. 
 
